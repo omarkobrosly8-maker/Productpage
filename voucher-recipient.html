@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your E-Gift Voucher | AL-JAZEERA PERFUMES Demo</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div class="topbar">AL-JAZEERA PERFUMES • Luxury Arabian fragrances • Secure checkout</div>
+<nav class="nav">
+  <a class="brand logo-wordmark" href="index.html"><span class="brand-mark">✦</span><span>AL-JAZEERA PERFUMES</span></a>
+  <div class="nav-links">
+    <a href="shop.html">Shop</a>
+    <a href="gift.html">Gifts</a>
+    <a href="e-voucher.html">E-Voucher</a>
+    <a href="product.html">Smart Product Page</a>
+    <a href="about.html">About</a>
+  </div>
+  <div class="nav-actions">
+    <a href="shop.html">Search</a>
+    <a href="cart.html">Cart</a>
+  </div>
+</nav>
+<main class="container recipient-voucher-page">
+  <section class="recipient-voucher-card">
+    <div class="alj-email-topline"></div>
+    <div class="recipient-voucher-inner">
+      <div class="alj-email-logo-mark">✦</div>
+      <div class="alj-email-logo">AL-JAZEERA PERFUMES</div>
+      <div class="alj-email-sublogo">Europe E-Gift Voucher</div>
+      <div class="alj-email-eyebrow" style="margin-top:28px">Your fragrant gift has arrived</div>
+      <h1 class="alj-email-title">A luxury perfume experience, chosen for you</h1>
+      <p class="alj-email-copy">Dear <strong data-recipient-to>Recipient</strong>, <span data-recipient-from>Someone special</span> has sent you an Al-Jazeera Perfumes e-gift voucher.</p>
+      <div class="alj-email-amount-panel">
+        <span>Your voucher value</span>
+        <strong data-recipient-amount>€100.00</strong>
+      </div>
+      <div class="recipient-code-panel">
+        <span>Voucher promo code / serial number</span>
+        <strong data-recipient-code>AJP-EU-100-DEMO</strong>
+      </div>
+      <div class="recipient-details">
+        <div><span>From</span><strong data-recipient-from-line>Sender</strong></div>
+        <div><span>Delivery</span><strong data-recipient-delivery>Delivered now</strong></div>
+      </div>
+      <div class="alj-email-message-panel">
+        <span>Personal message</span>
+        <p data-recipient-message>A luxury perfume experience, chosen for you.</p>
+      </div>
+      <button class="btn" data-copy-recipient-code type="button">Copy voucher code</button>
+      <a class="btn secondary" href="shop.html">Shop perfumes</a>
+      <p class="alj-email-note" style="margin-top:24px">Demo recipient view. In the live website, this code would be generated after successful order confirmation and connected to the voucher redemption system.</p>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="footer-inner"><div><div class="brand logo-wordmark footer-logo"><span class="brand-mark">✦</span><span>AL-JAZEERA PERFUMES</span></div><p>Demo website prototype using the uploaded product export. Built around the question: why should I buy this perfume?</p></div><div><h4>Shop</h4><p><a href="shop.html">All Perfumes</a></p><p><a href="gift.html">Gift Sets</a></p></div><div><h4>Product UX</h4><p>Why Buy This?</p><p>Scent Profile</p><p>Gift Safety</p></div><div><h4>Developer</h4><p>Reusable product template</p><p>Dynamic product data</p><p>CSV/Excel ready</p></div></div></footer>
+<script>
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const amount = Number(params.get('amount') || 100);
+  const code = params.get('code') || 'AJP-EU-100-DEMO';
+  const to = params.get('to') || 'Recipient';
+  const from = params.get('from') || 'Someone special';
+  const message = params.get('message') || 'A luxury perfume experience, chosen for you.';
+  const delivery = params.get('delivery') || 'Delivered now';
+  const formatCurrency = value => new Intl.NumberFormat('en-US', {style:'currency', currency:'EUR'}).format(value);
+  document.querySelector('[data-recipient-to]').textContent = to;
+  document.querySelector('[data-recipient-from]').textContent = from;
+  document.querySelector('[data-recipient-from-line]').textContent = from;
+  document.querySelector('[data-recipient-amount]').textContent = formatCurrency(amount);
+  document.querySelector('[data-recipient-code]').textContent = code;
+  document.querySelector('[data-recipient-message]').textContent = message;
+  document.querySelector('[data-recipient-delivery]').textContent = delivery.replace('This eGift Card will be ', '').replace('.', '');
+  document.querySelector('[data-copy-recipient-code]').addEventListener('click', async function(){
+    try {
+      await navigator.clipboard.writeText(code);
+      this.textContent = 'Voucher code copied';
+    } catch (error) {
+      this.textContent = 'Copy not available';
+    }
+  });
+})();
+</script>
+</body>
+</html>
