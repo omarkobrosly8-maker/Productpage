@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Al Jazeera Perfumes</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .breadcrumb{font-size:12px;color:var(--muted);padding:26px 0}
+  .breadcrumb a{color:var(--muted)}
+  .breadcrumb a:hover{color:var(--gold-light)}
+  .breadcrumb span{color:var(--gold-dim);margin:0 8px}
+
+  /* ---- Hero: gallery + buy box ---- */
+  .p-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;padding-bottom:70px}
+  @media (max-width:940px){.p-hero{grid-template-columns:1fr}}
+
+  .gallery{display:grid;grid-template-columns:88px 1fr;gap:16px}
+  @media (max-width:600px){.gallery{grid-template-columns:1fr}}
+  .thumbs{display:flex;flex-direction:column;gap:12px}
+  .thumbs img{border:1px solid var(--line);cursor:pointer;aspect-ratio:1/1;object-fit:cover;transition:.2s}
+  .thumbs img.active,.thumbs img:hover{border-color:var(--gold)}
+  .mainshot{aspect-ratio:4/5;background:var(--panel);border:1px solid var(--line);overflow:hidden}
+  .mainshot img{width:100%;height:100%;object-fit:cover}
+
+  .buybox .fam{color:var(--gold-dim);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+  .buybox h1{margin:10px 0 6px}
+  .buybox .meta-line{font-size:13px;color:var(--muted);margin-bottom:18px}
+  .buybox .price{font-family:var(--display);font-size:30px;color:var(--gold-light);margin:6px 0 22px}
+  .buybox .price small{font-size:14px;color:var(--muted);margin-left:8px;text-decoration:line-through}
+
+  .size-row{display:flex;gap:10px;margin-bottom:26px}
+  .size-pill{border:1px solid var(--line-strong);padding:9px 18px;font-size:13px;color:var(--muted);cursor:pointer}
+  .size-pill.active{border-color:var(--gold);color:var(--gold-light)}
+
+  .buyactions{display:flex;gap:12px;margin-bottom:10px}
+  .buyactions .btn{flex:1}
+  .stock-note{font-size:12px;color:#7fb46b;margin-bottom:28px}
+
+  .why{border:1px solid var(--line);padding:22px 24px;margin-bottom:20px;background:var(--panel)}
+  .why h4{font-family:var(--display);font-size:18px;color:var(--gold-light);margin:0 0 8px;font-weight:500}
+  .why p{margin:0;font-size:14px}
+
+  /* ---- Scent profile cards (replaces old strip) ---- */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+  @media (max-width:600px){.cards{grid-template-columns:repeat(2,1fr)}}
+  .pcard{border:1px solid var(--line);padding:18px;text-align:center;background:var(--panel)}
+  .pcard .lbl{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:12px}
+  .pcard .val{font-family:var(--display);font-size:19px;color:var(--cream)}
+  .pcard .barwrap{height:5px;border-radius:4px;background:rgba(255,255,255,.08);margin-top:10px;overflow:hidden}
+  .pcard .bar{height:100%;background:linear-gradient(90deg,var(--gold-dim),var(--gold-light))}
+  .pcard .icon{font-size:20px}
+
+  /* ---- Season suitability strip ---- */
+  .seasons-box{border:1px solid var(--line);background:var(--panel);padding:26px 24px;margin-top:26px}
+  .seasons-box h4{margin:0 0 18px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);font-weight:500;display:flex;align-items:center;gap:8px}
+  .season-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;text-align:center}
+  @media (max-width:600px){.season-grid{grid-template-columns:repeat(3,1fr)}}
+  .season-cell .icon{font-size:22px;margin-bottom:8px}
+  .season-cell .lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px}
+  .season-cell .barwrap{height:4px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-bottom:6px}
+  .season-cell .bar{height:100%;background:var(--gold)}
+  .season-cell .num{font-size:11px;color:var(--gold-dim)}
+
+  /* ---- Story sections ---- */
+  .story{padding:70px 0;border-top:1px solid var(--line)}
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  @media (max-width:900px){.story-grid{grid-template-columns:1fr}}
+  .story img{width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid var(--line)}
+
+  .pyramid{display:flex;flex-direction:column;gap:18px;margin-top:26px}
+  .pyr-row{display:grid;grid-template-columns:90px 1fr;gap:18px;align-items:start}
+  .pyr-row .lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dim);padding-top:4px}
+  .pyr-row .notes{display:flex;flex-wrap:wrap;gap:8px}
+  .pyr-row .notes span{border:1px solid var(--line-strong);padding:6px 14px;font-size:12.5px;color:var(--muted);border-radius:20px}
+
+  /* ---- Delivery / gifting / share ---- */
+  .service-box{border:1px solid var(--line);padding:26px 24px;margin-top:20px;background:var(--panel)}
+  .service-box h4{margin:0 0 16px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);font-weight:500}
+  .date-row{display:flex;gap:10px;align-items:center;margin-bottom:16px}
+  .date-row input[type=date]{
+    flex:1;background:transparent;border:1px solid var(--line-strong);color:var(--cream);
+    padding:10px 12px;font-size:13px;border-radius:2px;font-family:var(--sans);
+  }
+  .time-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  @media (max-width:500px){.time-slots{grid-template-columns:repeat(2,1fr)}}
+  .time-slot{border:1px solid var(--line-strong);padding:9px 6px;text-align:center;font-size:12px;color:var(--muted);cursor:pointer}
+  .time-slot.active,.time-slot:hover{border-color:var(--gold);color:var(--gold-light)}
+
+  .share-row{display:flex;align-items:center;justify-content:space-between;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+  .share-row .lbl{font-size:12px;color:var(--muted)}
+  .share-icons{display:flex;gap:12px}
+  .share-icons button{
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--line-strong);
+    display:flex;align-items:center;justify-content:center;background:transparent;color:var(--gold-light);font-size:15px;
+  }
+  .share-icons button:hover{border-color:var(--gold);background:var(--gold);color:var(--black)}
+
+  /* ---- E-gift voucher preview ---- */
+  .voucher-cta{border:1px solid var(--gold-dim);margin-top:20px;padding:26px 24px;background:linear-gradient(135deg,var(--oud),var(--panel))}
+  .voucher-cta h4{margin:0 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);font-weight:500}
+  .voucher-cta p{font-size:13px;margin:0 0 18px}
+  .voucher-card{
+    border:1px solid var(--gold-dim);border-radius:8px;padding:22px;
+    background:radial-gradient(circle at 20% 20%,rgba(201,166,90,.18),transparent 60%),var(--black);
+    display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px;
+  }
+  .voucher-card .vleft{display:flex;flex-direction:column;gap:6px}
+  .voucher-card .vleft .vlogo{font-family:var(--display);font-size:15px;letter-spacing:.1em;color:var(--gold-light)}
+  .voucher-card .vleft .vamount{font-family:var(--display);font-size:26px;color:var(--cream)}
+  .voucher-card .vleft .vmsg{font-size:11.5px;color:var(--muted);max-width:220px}
+  .voucher-card .vright{font-size:34px;color:var(--gold-dim)}
+
+  /* ---- Cross-sell strip ---- */
+  .related h2{margin-bottom:30px}
+  .rel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  @media (max-width:900px){.rel-grid{grid-template-columns:repeat(2,1fr)}}
+  .rel-card img{aspect-ratio:4/5;object-fit:cover;border:1px solid var(--line);margin-bottom:12px}
+  .rel-card .n{font-family:var(--display);font-size:16px}
+  .rel-card .p{font-size:13px;color:var(--gold-light)}
+</style>
+</head>
+<body>
+
+<div class="announce">COMPLIMENTARY GIFT WRAPPING &amp; FREE DELIVERY OVER QAR 300</div>
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="#"><b>AL JAZEERA</b> PERFUMES</a>
+    <div class="navlinks">
+      <a href="#">Home</a>
+      <a class="active" href="category.html">Perfumes</a>
+      <a href="#">Oud &amp; Oil</a>
+      <a href="voucher.html">E-Gift Voucher</a>
+      <a href="#">About</a>
+    </div>
+    <div class="navicons"><span>&#9825;</span><span>&#128100;</span><span>&#128722;</span></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="breadcrumb"><a href="category.html">Perfumes</a><span>/</span><span id="crumbFamily">—</span><span>/</span><span id="crumbName" style="color:var(--cream)">—</span></div>
+
+  <section class="p-hero">
+    <div class="gallery">
+      <div class="thumbs" id="thumbs"></div>
+      <div class="mainshot"><img id="mainImg" src="" alt=""></div>
+    </div>
+
+    <div class="buybox">
+      <div class="fam" id="pFamily">—</div>
+      <h1 id="pName">—</h1>
+      <div class="meta-line" id="pMeta">—</div>
+      <div class="price" id="pPrice">—</div>
+
+      <div class="size-row" id="sizeRow"></div>
+
+      <div class="buyactions">
+        <button class="btn btn-solid">Add to Bag</button>
+        <button class="btn btn-ghost">&#9825; Save</button>
+      </div>
+      <div class="stock-note">&#10003; In stock — ships within 24 hours</div>
+
+      <div class="why">
+        <h4>Why this one</h4>
+        <p id="pWhy">—</p>
+      </div>
+
+      <div class="cards" id="profileCards"></div>
+
+      <div class="seasons-box">
+        <h4>&#9200; When to Wear</h4>
+        <div class="season-grid" id="seasonGrid"></div>
+      </div>
+
+      <div class="service-box">
+        <h4>Delivery</h4>
+        <div class="date-row">
+          <label style="font-size:12px;color:var(--muted)">Requested delivery date</label>
+        </div>
+        <div class="date-row">
+          <input type="date" id="deliveryDate">
+        </div>
+        <div class="time-slots" id="timeSlots"></div>
+
+        <div class="share-row">
+          <span class="lbl">Share this fragrance</span>
+          <div class="share-icons">
+            <button title="Copy link" id="shareCopy">&#128279;</button>
+            <button title="WhatsApp">&#128241;</button>
+            <button title="Email">&#9993;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="voucher-cta">
+        <h4>&#127873; Send it as an E-Gift instead</h4>
+        <p>Let them choose their own scent. Preview how your gift card will look before you send it.</p>
+        <div class="voucher-card">
+          <div class="vleft">
+            <div class="vlogo">AL JAZEERA E-GIFT</div>
+            <div class="vamount" id="voucherAmount">QAR 500</div>
+            <div class="vmsg">"Wishing you a beautiful year ahead — with love"</div>
+          </div>
+          <div class="vright">&#10022;</div>
+        </div>
+        <a class="btn btn-ghost btn-block" href="voucher.html">Preview Your E-Gift Card</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="story">
+    <div class="story-grid">
+      <div>
+        <div class="eyebrow">The Scent Journey</div>
+        <h2>How it unfolds on skin</h2>
+        <p id="pLongDesc" style="margin-top:14px"></p>
+        <div class="pyramid">
+          <div class="pyr-row"><div class="lbl">Top</div><div class="notes" id="notesTop"></div></div>
+          <div class="pyr-row"><div class="lbl">Heart</div><div class="notes" id="notesHeart"></div></div>
+          <div class="pyr-row"><div class="lbl">Base</div><div class="notes" id="notesBase"></div></div>
+        </div>
+      </div>
+      <img id="storyImg" src="" alt="">
+    </div>
+  </section>
+
+  <section class="section related">
+    <h2>You May Also Like</h2>
+    <div class="rel-grid" id="relatedGrid"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>© Al Jazeera Perfumes — Qatar</div>
+    <div>Prototype redesign — product page</div>
+  </div>
+</footer>
+
+<script src="assets/products.js"></script>
+<script>
+const SEASON_META = [
+  {k:'winter',icon:'&#10052;',lbl:'Winter'},
+  {k:'spring',icon:'&#127807;',lbl:'Spring'},
+  {k:'summer',icon:'&#9756;',lbl:'Summer'},
+  {k:'fall',icon:'&#127810;',lbl:'Fall'},
+  {k:'day',icon:'&#9728;',lbl:'Day'},
+  {k:'night',icon:'&#127769;',lbl:'Night'},
+];
+
+const FAMILY_PROFILE = {
+  Oud:     {projection:92, longevity:'10+ Hours', tag2:'Woody'},
+  Amber:   {projection:85, longevity:'10+ Hours', tag2:'Warm'},
+  Musk:    {projection:60, longevity:'8+ Hours',  tag2:'Sensual'},
+  Flowers: {projection:55, longevity:'6+ Hours',  tag2:'Romantic'},
+  Fresh:   {projection:45, longevity:'4–6 Hours', tag2:'Citrus'},
+};
+
+function getParam(name){ return new URLSearchParams(location.search).get(name); }
+
+function priceOf(p){ return p.discountPrice || p.price || 0; }
+
+function render(){
+  const slug = getParam('slug') || (PRODUCTS[0] && PRODUCTS[0].slug);
+  const p = PRODUCTS.find(x=>x.slug===slug) || PRODUCTS[0];
+  if(!p) return;
+
+  document.title = p.name + ' — Al Jazeera Perfumes';
+  document.getElementById('crumbFamily').textContent = p.family;
+  document.getElementById('crumbName').textContent = p.name;
+  document.getElementById('pFamily').textContent = p.family + ' · ' + p.concentration;
+  document.getElementById('pName').textContent = p.name.charAt(0) + p.name.slice(1).toLowerCase();
+  document.getElementById('pMeta').textContent = `${p.gender} · ${p.volume || ''}${p.perfumer ? ' · Perfumer: '+p.perfumer : ''}`;
+  const price = priceOf(p);
+  document.getElementById('pPrice').innerHTML = `QAR ${price.toFixed(0)}` + (p.discountPrice ? ` <small>QAR ${p.price.toFixed(0)}</small>` : '');
+  document.getElementById('pWhy').textContent = p.desc || p.longDesc.slice(0,160)+'…';
+  document.getElementById('pLongDesc').textContent = p.longDesc;
+  document.getElementById('voucherAmount').textContent = 'QAR ' + (price>=200?price.toFixed(0):500);
+
+  // gallery
+  const allImgs = [p.img, ...(p.images||[])].filter(Boolean);
+  document.getElementById('mainImg').src = allImgs[0];
+  document.getElementById('mainImg').alt = p.name;
+  document.getElementById('storyImg').src = allImgs[1] || allImgs[0];
+  document.getElementById('thumbs').innerHTML = allImgs.map((src,i)=>
+    `<img src="${src}" class="${i===0?'active':''}" onclick="document.getElementById('mainImg').src=this.src; document.querySelectorAll('#thumbs img').forEach(t=>t.classList.remove('active')); this.classList.add('active')">`
+  ).join('');
+
+  // size row (only one volume in data, show it as selected)
+  document.getElementById('sizeRow').innerHTML = `<div class="size-pill active">${p.volume || 'Standard'}</div>`;
+
+  // profile cards
+  const prof = FAMILY_PROFILE[p.family] || FAMILY_PROFILE.Fresh;
+  const bestTime = (p.seasons.night >= p.seasons.day) ? 'Evening' : 'Daytime';
+  document.getElementById('profileCards').innerHTML = `
+    <div class="pcard">
+      <div class="lbl">Projection</div>
+      <div class="val">${prof.projection>=80?'Strong':prof.projection>=55?'Moderate':'Light'}</div>
+      <div class="barwrap"><div class="bar" style="width:${prof.projection}%"></div></div>
+    </div>
+    <div class="pcard">
+      <div class="lbl">Scent Category</div>
+      <div class="val" style="font-size:15px">${p.family} · ${prof.tag2}</div>
+    </div>
+    <div class="pcard">
+      <div class="lbl">Longevity</div>
+      <div class="val">${prof.longevity}</div>
+    </div>
+    <div class="pcard">
+      <div class="lbl">Gender</div>
+      <div class="val">${p.gender}</div>
+    </div>
+    <div class="pcard">
+      <div class="lbl">Best Time</div>
+      <div class="val">${bestTime}</div>
+    </div>
+    <div class="pcard">
+      <div class="lbl">Concentration</div>
+      <div class="val" style="font-size:15px">${p.concentration}</div>
+    </div>`;
+
+  // seasons grid
+  document.getElementById('seasonGrid').innerHTML = SEASON_META.map(s=>{
+    const v = p.seasons[s.k] ?? 0;
+    return `<div class="season-cell">
+      <div class="icon">${s.icon}</div>
+      <div class="lbl">${s.lbl}</div>
+      <div class="barwrap"><div class="bar" style="width:${v*10}%"></div></div>
+      <div class="num">${v}</div>
+    </div>`;
+  }).join('');
+
+  // notes pyramid
+  const noteHtml = arr => (arr && arr.length ? arr.map(n=>`<span>${n}</span>`).join('') : '<span>—</span>');
+  document.getElementById('notesTop').innerHTML = noteHtml(p.notesTop);
+  document.getElementById('notesHeart').innerHTML = noteHtml(p.notesHeart);
+  document.getElementById('notesBase').innerHTML = noteHtml(p.notesBase);
+
+  // delivery time slots
+  const slots = ['9am – 11am','11am – 1pm','1pm – 3pm','3pm – 5pm','5pm – 7pm','7pm – 9pm'];
+  document.getElementById('timeSlots').innerHTML = slots.map((s,i)=>
+    `<div class="time-slot ${i===2?'active':''}" onclick="document.querySelectorAll('.time-slot').forEach(t=>t.classList.remove('active'));this.classList.add('active')">${s}</div>`
+  ).join('');
+  const dateInput = document.getElementById('deliveryDate');
+  const tmr = new Date(); tmr.setDate(tmr.getDate()+1);
+  dateInput.min = tmr.toISOString().slice(0,10);
+  dateInput.value = tmr.toISOString().slice(0,10);
+
+  document.getElementById('shareCopy').onclick = ()=>{
+    navigator.clipboard?.writeText(location.href);
+    document.getElementById('shareCopy').textContent = '✓';
+    setTimeout(()=>document.getElementById('shareCopy').innerHTML='&#128279;',1500);
+  };
+
+  // related products: same family, excluding self
+  const related = PRODUCTS.filter(x=>x.family===p.family && x.slug!==p.slug).slice(0,4);
+  document.getElementById('relatedGrid').innerHTML = related.map(r=>`
+    <a class="rel-card" href="product.html?slug=${r.slug}">
+      <img src="${r.img}" alt="${r.name}">
+      <div class="n">${r.name.charAt(0)+r.name.slice(1).toLowerCase()}</div>
+      <div class="p">QAR ${priceOf(r).toFixed(0)}</div>
+    </a>`).join('');
+}
+
+render();
+</script>
+</body>
+</html>

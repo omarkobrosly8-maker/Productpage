@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfumes — Al Jazeera Perfumes</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* ---- Category hero ---- */
+  .cat-hero{
+    position:relative;height:44vh;min-height:340px;
+    display:flex;align-items:flex-end;
+    background:linear-gradient(180deg,rgba(12,11,9,.15),rgba(12,11,9,.9)),
+      url('https://api-qatar.aljazeeraperfumes.com/storage/uploads/Onyx%20%28Top%29-1753132363.webp') center/cover;
+  }
+  .cat-hero .wrap{padding-bottom:46px}
+  .cat-hero .eyebrow{margin-bottom:14px}
+  .cat-hero p{max-width:520px;color:var(--muted)}
+
+  /* ---- Layout: filter rail + grid ---- */
+  .shop-layout{display:grid;grid-template-columns:260px 1fr;gap:56px;align-items:start;padding:56px 0 100px}
+  @media (max-width:980px){.shop-layout{grid-template-columns:1fr}}
+
+  .filters{position:sticky;top:100px;display:flex;flex-direction:column;gap:34px}
+  .filter-group h4{font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin:0 0 16px;font-weight:500}
+  .filter-list{display:flex;flex-direction:column;gap:11px}
+  .filter-list label{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);cursor:pointer}
+  .filter-list input{accent-color:var(--gold)}
+  .filter-list label:hover{color:var(--cream)}
+  .price-row{display:flex;gap:10px}
+  .price-row input{width:100%;background:transparent;border:1px solid var(--line-strong);color:var(--cream);padding:9px 10px;font-size:13px;border-radius:2px;font-family:var(--sans)}
+  .clear-filters{font-size:12px;letter-spacing:.06em;color:var(--gold);border-bottom:1px solid var(--gold-dim);align-self:flex-start;padding-bottom:2px}
+
+  /* ---- Toolbar ---- */
+  .toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:34px;flex-wrap:wrap;gap:16px}
+  .result-count{font-size:13px;color:var(--muted);letter-spacing:.02em}
+  .sortbox select{
+    background:var(--panel);border:1px solid var(--line-strong);color:var(--cream);
+    padding:11px 16px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;border-radius:2px;font-family:var(--sans);
+  }
+
+  /* ---- Product grid: bigger images, generous air ---- */
+  .grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:44px 32px;
+  }
+  @media (max-width:1180px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr}}
+
+  .card{display:flex;flex-direction:column;gap:16px}
+  .card .imgwrap{
+    position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--panel);
+    border:1px solid var(--line);
+  }
+  .card .imgwrap img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+  .card:hover .imgwrap img{transform:scale(1.06)}
+  .card .badge{
+    position:absolute;top:14px;left:14px;background:var(--black);color:var(--gold-light);
+    font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;border:1px solid var(--line-strong);
+  }
+  .card .quickadd{
+    position:absolute;left:14px;right:14px;bottom:14px;
+    opacity:0;transform:translateY(8px);transition:.25s;
+  }
+  .card:hover .quickadd{opacity:1;transform:translateY(0)}
+  .card .quickadd button{
+    width:100%;background:rgba(12,11,9,.88);border:1px solid var(--gold);color:var(--gold-light);
+    padding:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;backdrop-filter:blur(3px);
+  }
+  .card .quickadd button:hover{background:var(--gold);color:var(--black)}
+
+  .card .info{display:flex;flex-direction:column;gap:6px}
+  .card .fam{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dim)}
+  .card .name{font-family:var(--display);font-size:21px;color:var(--cream)}
+  .card .meta{font-size:12.5px;color:var(--muted)}
+  .card .price{font-size:14px;color:var(--gold-light);letter-spacing:.02em;margin-top:2px}
+
+  .loadmore{display:flex;justify-content:center;margin-top:60px}
+
+  /* mobile filter toggle */
+  .filter-toggle{display:none}
+  @media (max-width:980px){
+    .filter-toggle{display:inline-flex;margin-bottom:24px}
+    .filters{display:none;position:static;border:1px solid var(--line);padding:24px;background:var(--panel)}
+    .filters.open{display:flex}
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">COMPLIMENTARY GIFT WRAPPING &amp; FREE DELIVERY OVER QAR 300</div>
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="#"><b>AL JAZEERA</b> PERFUMES</a>
+    <div class="navlinks">
+      <a href="#">Home</a>
+      <a class="active" href="category.html">Perfumes</a>
+      <a href="#">Oud &amp; Oil</a>
+      <a href="voucher.html">E-Gift Voucher</a>
+      <a href="#">About</a>
+    </div>
+    <div class="navicons">
+      <span>&#9825;</span><span>&#128100;</span><span>&#128722;</span>
+    </div>
+  </div>
+</nav>
+
+<header class="cat-hero">
+  <div class="wrap">
+    <div class="eyebrow">The Collection</div>
+    <h1>Perfumes</h1>
+    <p>174 fragrances, from bright florals to deep, resinous oud — arranged so you can browse by mood, season, and scent family rather than hunt through a list.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="shop-layout">
+    <aside class="filters" id="filters">
+      <div class="filter-group">
+        <h4>Scent Family</h4>
+        <div class="filter-list" id="f-family"></div>
+      </div>
+      <div class="filter-group">
+        <h4>Best For</h4>
+        <div class="filter-list">
+          <label><input type="checkbox" data-season="summer"> Summer</label>
+          <label><input type="checkbox" data-season="winter"> Winter</label>
+          <label><input type="checkbox" data-season="day"> Daytime</label>
+          <label><input type="checkbox" data-season="night"> Evening</label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <h4>Gender</h4>
+        <div class="filter-list" id="f-gender"></div>
+      </div>
+      <div class="filter-group">
+        <h4>Price (QAR)</h4>
+        <div class="price-row">
+          <input type="number" id="priceMin" placeholder="Min">
+          <input type="number" id="priceMax" placeholder="Max">
+        </div>
+      </div>
+      <span class="clear-filters" id="clearFilters">Clear all filters</span>
+    </aside>
+
+    <section>
+      <button class="btn btn-ghost btn-sm filter-toggle" id="filterToggle">Filters</button>
+      <div class="toolbar">
+        <div class="result-count" id="resultCount">174 fragrances</div>
+        <div class="sortbox">
+          <select id="sortSelect">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">Name: A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid" id="grid"></div>
+      <div class="loadmore"><button class="btn btn-ghost" id="loadMoreBtn">Show More Fragrances</button></div>
+    </section>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>© Al Jazeera Perfumes — Qatar</div>
+    <div>Prototype redesign — categories page</div>
+  </div>
+</footer>
+
+<script src="assets/products.js"></script>
+<script>
+const state = { family:new Set(), season:new Set(), gender:new Set(), min:null, max:null, sort:'featured', page:1, perPage:12 };
+const PAGE_SIZE = 12;
+
+function families(){ return [...new Set(PRODUCTS.map(p=>p.family).filter(Boolean))].sort(); }
+function genders(){ return [...new Set(PRODUCTS.map(p=>p.gender).filter(Boolean))].sort(); }
+
+function buildFilterUI(){
+  document.getElementById('f-family').innerHTML = families().map(f=>
+    `<label><input type="checkbox" data-family="${f}"> ${f}</label>`).join('');
+  document.getElementById('f-gender').innerHTML = genders().map(g=>
+    `<label><input type="checkbox" data-gender="${g}"> ${g}</label>`).join('');
+
+  document.querySelectorAll('[data-family]').forEach(el=>el.addEventListener('change',e=>{
+    e.target.checked ? state.family.add(e.target.dataset.family) : state.family.delete(e.target.dataset.family);
+    state.page=1; render();
+  }));
+  document.querySelectorAll('[data-season]').forEach(el=>el.addEventListener('change',e=>{
+    e.target.checked ? state.season.add(e.target.dataset.season) : state.season.delete(e.target.dataset.season);
+    state.page=1; render();
+  }));
+  document.querySelectorAll('[data-gender]').forEach(el=>el.addEventListener('change',e=>{
+    e.target.checked ? state.gender.add(e.target.dataset.gender) : state.gender.delete(e.target.dataset.gender);
+    state.page=1; render();
+  }));
+  document.getElementById('priceMin').addEventListener('input',e=>{state.min=e.target.value?+e.target.value:null; state.page=1; render();});
+  document.getElementById('priceMax').addEventListener('input',e=>{state.max=e.target.value?+e.target.value:null; state.page=1; render();});
+  document.getElementById('sortSelect').addEventListener('change',e=>{state.sort=e.target.value; render();});
+  document.getElementById('clearFilters').addEventListener('click',()=>{
+    state.family.clear(); state.season.clear(); state.gender.clear(); state.min=null; state.max=null;
+    document.querySelectorAll('.filters input').forEach(i=> i.type==='checkbox' ? i.checked=false : i.value='');
+    state.page=1; render();
+  });
+  document.getElementById('filterToggle').addEventListener('click',()=>document.getElementById('filters').classList.toggle('open'));
+  document.getElementById('loadMoreBtn').addEventListener('click',()=>{state.page++; render(true);});
+}
+
+function priceOf(p){ return p.discountPrice || p.price || 0; }
+
+function filtered(){
+  return PRODUCTS.filter(p=>{
+    if(state.family.size && !state.family.has(p.family)) return false;
+    if(state.gender.size && !state.gender.has(p.gender)) return false;
+    if(state.season.size){
+      const ok = [...state.season].some(s => (p.seasons?.[s]||0) >= 5);
+      if(!ok) return false;
+    }
+    const price = priceOf(p);
+    if(state.min!=null && price < state.min) return false;
+    if(state.max!=null && price > state.max) return false;
+    return true;
+  }).sort((a,b)=>{
+    if(state.sort==='price-asc') return priceOf(a)-priceOf(b);
+    if(state.sort==='price-desc') return priceOf(b)-priceOf(a);
+    if(state.sort==='name-asc') return a.name.localeCompare(b.name);
+    return 0;
+  });
+}
+
+function card(p){
+  const price = priceOf(p);
+  return `
+  <a class="card" href="product.html?slug=${p.slug}">
+    <div class="imgwrap">
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+      <span class="badge">${p.family}</span>
+      <div class="quickadd"><button type="button" onclick="event.preventDefault()">Quick View</button></div>
+    </div>
+    <div class="info">
+      <span class="fam">${p.gender} · ${p.concentration}</span>
+      <span class="name">${p.name.charAt(0)+p.name.slice(1).toLowerCase()}</span>
+      <span class="meta">${p.volume || ''}</span>
+      <span class="price">QAR ${price.toFixed(0)}</span>
+    </div>
+  </a>`;
+}
+
+function render(append){
+  const list = filtered();
+  const shown = list.slice(0, state.page*PAGE_SIZE);
+  document.getElementById('grid').innerHTML = shown.map(card).join('');
+  document.getElementById('resultCount').textContent = `${list.length} fragrance${list.length===1?'':'s'}`;
+  document.getElementById('loadMoreBtn').style.display = shown.length >= list.length ? 'none' : 'inline-flex';
+}
+
+buildFilterUI();
+render();
+</script>
+</body>
+</html>

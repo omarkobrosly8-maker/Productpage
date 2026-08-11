@@ -1,0 +1,112 @@
+/* =========================================================
+   AL JAZEERA PERFUMES — Redesign Design System
+   Palette kept close to the live site (deep black + antique
+   gold, warm oud-brown accent) — layout, spacing and type
+   rebuilt for a calmer, more editorial, more explorable feel.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap');
+
+:root{
+  --black:        #0c0b09;
+  --black-soft:   #131110;
+  --panel:        #17140f;
+  --line:         rgba(201,166,90,.18);
+  --line-strong:  rgba(201,166,90,.35);
+  --gold:         #c9a65a;
+  --gold-light:   #e6cf9c;
+  --gold-dim:     #8a7442;
+  --cream:        #f4ecdc;
+  --muted:        #a99d86;
+  --oud:          #2c1b13;
+  --oud-2:        #452a1c;
+  --white:        #ffffff;
+
+  --display: 'Cormorant Garamond', serif;
+  --sans: 'Jost', sans-serif;
+
+  --container: 1320px;
+  --radius: 2px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--cream);
+  font-family:var(--sans);
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 40px}
+@media (max-width:900px){.wrap{padding:0 20px}}
+
+/* ---------- Type ---------- */
+.eyebrow{
+  font-family:var(--sans);
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  font-size:11px;
+  color:var(--gold);
+  font-weight:500;
+}
+h1,h2,h3,.serif{font-family:var(--display);font-weight:500;color:var(--cream);letter-spacing:.01em}
+h1{font-size:clamp(34px,4vw,56px);line-height:1.05}
+h2{font-size:clamp(26px,3vw,38px);line-height:1.1}
+p{line-height:1.7;color:var(--muted);font-weight:300}
+
+/* ---------- Top bar / nav (kept consistent with existing site) ---------- */
+.announce{
+  background:var(--oud);
+  color:var(--gold-light);
+  text-align:center;
+  font-size:12px;
+  letter-spacing:.08em;
+  padding:9px 0;
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  background:var(--black);
+  border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:50;
+}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:82px}
+.logo{font-family:var(--display);font-size:24px;letter-spacing:.12em;color:var(--gold-light)}
+.logo b{color:var(--gold)}
+.navlinks{display:flex;gap:34px;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.navlinks a{opacity:.82;transition:opacity .2s}
+.navlinks a:hover,.navlinks a.active{opacity:1;color:var(--gold-light)}
+.navicons{display:flex;gap:22px;align-items:center;font-size:18px;color:var(--gold-light)}
+@media (max-width:900px){.navlinks{display:none}}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 30px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--gold);border-radius:var(--radius);
+  background:transparent;color:var(--gold-light);
+  transition:.25s;
+}
+.btn:hover{background:var(--gold);color:var(--black)}
+.btn-solid{background:var(--gold);color:var(--black);border-color:var(--gold)}
+.btn-solid:hover{background:var(--gold-light);border-color:var(--gold-light)}
+.btn-ghost{border-color:var(--line-strong);color:var(--cream)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-light);background:transparent}
+.btn-sm{padding:11px 20px;font-size:11px}
+.btn-block{width:100%}
+
+/* ---------- Footer ---------- */
+.footer{border-top:1px solid var(--line);padding:60px 0 30px;color:var(--muted);font-size:13px}
+.footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px}
+
+/* ---------- Utility ---------- */
+.section{padding:80px 0}
+.center{text-align:center}
+.tag{
+  display:inline-block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold-light);border:1px solid var(--line-strong);padding:5px 12px;border-radius:20px;
+}

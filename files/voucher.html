@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Gift Voucher — Al Jazeera Perfumes</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .v-hero{padding:56px 0 10px}
+  .v-hero .eyebrow{margin-bottom:14px}
+  .v-hero p{max-width:560px}
+
+  .v-layout{display:grid;grid-template-columns:1fr 1fr;gap:70px;padding:50px 0 100px;align-items:start}
+  @media (max-width:940px){.v-layout{grid-template-columns:1fr;gap:50px}}
+
+  /* ---- Form side ---- */
+  .field{margin-bottom:24px}
+  .field label{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px}
+  .field input,.field textarea,.field select{
+    width:100%;background:transparent;border:1px solid var(--line-strong);color:var(--cream);
+    padding:13px 14px;font-size:14px;border-radius:2px;font-family:var(--sans);
+  }
+  .field textarea{resize:vertical;min-height:90px}
+
+  .amount-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .amount-pill{border:1px solid var(--line-strong);padding:14px 4px;text-align:center;font-size:14px;color:var(--muted);cursor:pointer}
+  .amount-pill.active,.amount-pill:hover{border-color:var(--gold);color:var(--gold-light)}
+  .amount-custom{margin-top:10px}
+
+  .design-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .design-swatch{aspect-ratio:1.5/1;border:2px solid var(--line-strong);cursor:pointer;border-radius:4px}
+  .design-swatch.active{border-color:var(--gold)}
+  .d1{background:linear-gradient(135deg,#2c1b13,#0c0b09)}
+  .d2{background:linear-gradient(135deg,#17140f,#3a2a12)}
+  .d3{background:radial-gradient(circle at 30% 30%,#c9a65a55,#0c0b09)}
+  .d4{background:linear-gradient(135deg,#452a1c,#c9a65a33)}
+
+  .date-row{display:flex;gap:12px}
+  .date-row > div{flex:1}
+
+  .time-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+  .time-slot{border:1px solid var(--line-strong);padding:9px 6px;text-align:center;font-size:12px;color:var(--muted);cursor:pointer}
+  .time-slot.active,.time-slot:hover{border-color:var(--gold);color:var(--gold-light)}
+
+  /* ---- Preview side ---- */
+  .preview-col{position:sticky;top:110px}
+  .preview-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px}
+
+  .voucher-preview{
+    border-radius:14px;padding:36px;aspect-ratio:1.6/1;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:space-between;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.6);
+    border:1px solid var(--gold-dim);
+  }
+  .voucher-preview::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 85% 15%,rgba(255,255,255,.08),transparent 55%);
+    pointer-events:none;
+  }
+  .vp-top{display:flex;justify-content:space-between;align-items:flex-start}
+  .vp-logo{font-family:var(--display);font-size:17px;letter-spacing:.14em;color:var(--gold-light)}
+  .vp-star{font-size:22px;color:var(--gold)}
+  .vp-amount{font-family:var(--display);font-size:44px;color:var(--cream)}
+  .vp-msg{font-size:13px;color:var(--muted);max-width:70%;font-style:italic}
+  .vp-bottom{display:flex;justify-content:space-between;align-items:flex-end;font-size:11px;color:var(--muted);letter-spacing:.06em}
+  .vp-code{color:var(--gold-light)}
+
+  .summary{border:1px solid var(--line);background:var(--panel);padding:22px 24px;margin-top:26px;font-size:13px}
+  .summary .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}
+  .summary .row:last-child{border-bottom:none;font-weight:500;color:var(--gold-light)}
+  .summary .row span:first-child{color:var(--muted)}
+
+  .actions{display:flex;gap:12px;margin-top:24px}
+  .actions .btn{flex:1}
+</style>
+</head>
+<body>
+
+<div class="announce">COMPLIMENTARY GIFT WRAPPING &amp; FREE DELIVERY OVER QAR 300</div>
+<nav class="nav">
+  <div class="wrap">
+    <a class="logo" href="#"><b>AL JAZEERA</b> PERFUMES</a>
+    <div class="navlinks">
+      <a href="#">Home</a>
+      <a href="category.html">Perfumes</a>
+      <a href="#">Oud &amp; Oil</a>
+      <a class="active" href="voucher.html">E-Gift Voucher</a>
+      <a href="#">About</a>
+    </div>
+    <div class="navicons"><span>&#9825;</span><span>&#128100;</span><span>&#128722;</span></div>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="v-hero">
+    <div class="eyebrow">Gifting</div>
+    <h1>E-Gift Voucher</h1>
+    <p>Let them choose their own signature scent. Personalise a digital gift card, schedule when it arrives, and preview exactly what they'll receive before you send it.</p>
+  </div>
+
+  <div class="v-layout">
+    <div class="form-col">
+
+      <div class="field">
+        <label>Choose an amount (QAR)</label>
+        <div class="amount-row" id="amountRow">
+          <div class="amount-pill" data-amt="200">200</div>
+          <div class="amount-pill active" data-amt="500">500</div>
+          <div class="amount-pill" data-amt="1000">1000</div>
+          <div class="amount-pill" data-amt="2000">2000</div>
+        </div>
+        <input class="amount-custom" type="number" id="customAmount" placeholder="Or enter a custom amount">
+      </div>
+
+      <div class="field">
+        <label>Card Design</label>
+        <div class="design-row" id="designRow">
+          <div class="design-swatch d1 active" data-d="d1"></div>
+          <div class="design-swatch d2" data-d="d2"></div>
+          <div class="design-swatch d3" data-d="d3"></div>
+          <div class="design-swatch d4" data-d="d4"></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Recipient Name</label>
+        <input type="text" id="recipientName" placeholder="e.g. Maryam Al Thani">
+      </div>
+
+      <div class="field">
+        <label>Recipient Email</label>
+        <input type="email" id="recipientEmail" placeholder="name@email.com">
+      </div>
+
+      <div class="field">
+        <label>Your Personal Message</label>
+        <textarea id="giftMessage" placeholder="Wishing you a beautiful year ahead — with love">Wishing you a beautiful year ahead — with love</textarea>
+      </div>
+
+      <div class="field">
+        <label>Requested Delivery Date</label>
+        <div class="date-row">
+          <div><input type="date" id="sendDate"></div>
+        </div>
+        <div class="time-slots" id="timeSlots"></div>
+      </div>
+
+      <div class="field">
+        <label>From</label>
+        <input type="text" id="senderName" placeholder="Your name">
+      </div>
+    </div>
+
+    <div class="preview-col">
+      <div class="preview-label">Preview Your E-Gift Card</div>
+      <div class="voucher-preview d1" id="voucherPreview">
+        <div class="vp-top">
+          <div class="vp-logo">AL JAZEERA<br>E-GIFT</div>
+          <div class="vp-star">&#10022;</div>
+        </div>
+        <div>
+          <div class="vp-amount" id="pvAmount">QAR 500</div>
+          <div class="vp-msg" id="pvMessage">"Wishing you a beautiful year ahead — with love"</div>
+        </div>
+        <div class="vp-bottom">
+          <span>To: <span id="pvRecipient">A friend</span></span>
+          <span class="vp-code">Code: AJP-XXXX-XXXX</span>
+        </div>
+      </div>
+
+      <div class="summary">
+        <div class="row"><span>Amount</span><span id="sumAmount">QAR 500</span></div>
+        <div class="row"><span>Delivery</span><span id="sumDelivery">Tomorrow, 1pm – 3pm</span></div>
+        <div class="row"><span>Recipient</span><span id="sumRecipient">A friend</span></div>
+        <div class="row"><span>Total</span><span id="sumTotal">QAR 500</span></div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-solid btn-block" id="sendBtn">Send E-Gift Voucher</button>
+        <button class="btn btn-ghost">&#9825;</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div>© Al Jazeera Perfumes — Qatar</div>
+    <div>Prototype redesign — e-gift voucher page</div>
+  </div>
+</footer>
+
+<script>
+let amount = 500;
+
+document.querySelectorAll('.amount-pill').forEach(el=>el.addEventListener('click',()=>{
+  document.querySelectorAll('.amount-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  amount = +el.dataset.amt;
+  document.getElementById('customAmount').value='';
+  update();
+}));
+document.getElementById('customAmount').addEventListener('input',e=>{
+  if(e.target.value){
+    document.querySelectorAll('.amount-pill').forEach(p=>p.classList.remove('active'));
+    amount = +e.target.value;
+    update();
+  }
+});
+document.querySelectorAll('.design-swatch').forEach(el=>el.addEventListener('click',()=>{
+  document.querySelectorAll('.design-swatch').forEach(d=>d.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('voucherPreview').className = 'voucher-preview ' + el.dataset.d;
+}));
+
+const slots = ['9am – 11am','11am – 1pm','1pm – 3pm','3pm – 5pm','5pm – 7pm','7pm – 9pm'];
+document.getElementById('timeSlots').innerHTML = slots.map((s,i)=>
+  `<div class="time-slot ${i===2?'active':''}" data-slot="${s}">${s}</div>`
+).join('');
+document.querySelectorAll('.time-slot').forEach(el=>el.addEventListener('click',()=>{
+  document.querySelectorAll('.time-slot').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  update();
+}));
+
+const dateInput = document.getElementById('sendDate');
+const tmr = new Date(); tmr.setDate(tmr.getDate()+1);
+dateInput.min = tmr.toISOString().slice(0,10);
+dateInput.value = tmr.toISOString().slice(0,10);
+dateInput.addEventListener('input', update);
+
+['recipientName','giftMessage'].forEach(id=>document.getElementById(id).addEventListener('input', update));
+
+function activeSlot(){ return document.querySelector('.time-slot.active')?.dataset.slot || '1pm – 3pm'; }
+
+function update(){
+  const name = document.getElementById('recipientName').value || 'A friend';
+  const msg = document.getElementById('giftMessage').value || 'Wishing you a beautiful year ahead — with love';
+  const dateVal = dateInput.value;
+  const dateLabel = dateVal ? new Date(dateVal).toLocaleDateString('en-GB',{day:'numeric',month:'short'}) : 'Tomorrow';
+
+  document.getElementById('pvAmount').textContent = `QAR ${amount}`;
+  document.getElementById('pvMessage').textContent = `"${msg}"`;
+  document.getElementById('pvRecipient').textContent = name;
+
+  document.getElementById('sumAmount').textContent = `QAR ${amount}`;
+  document.getElementById('sumDelivery').textContent = `${dateLabel}, ${activeSlot()}`;
+  document.getElementById('sumRecipient').textContent = name;
+  document.getElementById('sumTotal').textContent = `QAR ${amount}`;
+}
+update();
+
+document.getElementById('sendBtn').addEventListener('click', ()=>{
+  document.getElementById('sendBtn').textContent = '✓ Gift Scheduled';
+  setTimeout(()=>document.getElementById('sendBtn').textContent='Send E-Gift Voucher', 2200);
+});
+</script>
+</body>
+</html>
